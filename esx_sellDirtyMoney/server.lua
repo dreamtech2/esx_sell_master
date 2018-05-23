@@ -37,16 +37,18 @@ end)
 	local coke 	  = xPlayer.getInventoryItem('coke_pooch').count
 	local weed = xPlayer.getInventoryItem('weed_pooch').count
 	local opium = xPlayer.getInventoryItem('opium_pooch').count
-	local paymentc = math.random (500,1000)
-	local paymentw = math.random (150,300)
-	local paymentm = math.random (300,700)
-	local paymento = math.random (150,300)
+	local paymentc = math.random (1000,1500)
+	local paymentw = math.random (1000,1500)
+	local paymentm = math.random (1000,1500)
+	local paymento = math.random (700,1200)
 
 
 		if coke >= 1 and success == true then
+			local removeAmount = math.random(5)
+			local payment = paymentc * removeAmount
 			 	TriggerClientEvent("pNotify:SetQueueMax", source, "lmao", 5)
 				TriggerClientEvent("pNotify:SendNotification", source, {
-					text = "You have sold a bag of cocaine for $" .. paymentc ,
+					text = "You have sold a baggie of cocaine for $" .. payment ,
 					type = "success",
 					progressBar = false,
 					queue = "lmao",
@@ -54,13 +56,15 @@ end)
 					layout = "CenterLeft"
 			})
 			TriggerClientEvent("animation", source)
-			xPlayer.removeInventoryItem('coke_pooch', 1)
-  			xPlayer.addAccountMoney('black_money', paymentc)
+			xPlayer.removeInventoryItem('coke_pooch', removeAmount)
+  			xPlayer.addAccountMoney('black_money', payment)
   			selling = false
   		elseif weed >= 1 and success == true then
+  			local removeAmount = math.random(5)
+			local payment = paymentw * removeAmount
   				TriggerClientEvent("pNotify:SetQueueMax", source, "lmao", 5)
 				TriggerClientEvent("pNotify:SendNotification", source, {
-					text = "You have sold a joints for $" .. paymentw ,
+					text = "You have sold baggie of weed for $" .. payment ,
 					type = "success",
 					progressBar = false,
 					queue = "lmao",
@@ -69,13 +73,15 @@ end)
 			})
 			TriggerClientEvent("animation", source)
 			TriggerClientEvent("test", source)
-  			xPlayer.removeInventoryItem('weed_pooch', 1)
-  			xPlayer.addAccountMoney('black_money', paymentw)
+  			xPlayer.removeInventoryItem('weed_pooch', removeAmount)
+  			xPlayer.addAccountMoney('black_money', payment)
   			selling = false
   		  elseif meth >= 1 and success == true then
+  		  	local removeAmount = math.random(5)
+			local payment = paymentm * removeAmount
   				TriggerClientEvent("pNotify:SetQueueMax", source, "lmao", 5)
 				TriggerClientEvent("pNotify:SendNotification", source, {
-					text = "You have sold a methbag for $" .. paymentm ,
+					text = "You have sold a baggie of meth for $" .. payment ,
 					type = "success",
 					progressBar = false,
 					queue = "lmao",
@@ -83,23 +89,25 @@ end)
 					layout = "CenterLeft"
 			})
 			TriggerClientEvent("animation", source)
-  			xPlayer.removeInventoryItem('meth_pooch', 1)
-  			xPlayer.addAccountMoney('black_money', paymentm)
+  			xPlayer.removeInventoryItem('meth_pooch', removeAmount)
+  			xPlayer.addAccountMoney('black_money', payment)
   			selling = false
   			elseif opium >= 1 and success == true then
-  				TriggerClientEvent("pNotify:SetQueueMax", source, "lmao", 5)
-				TriggerClientEvent("pNotify:SendNotification", source, {
-					text = "You have sold a bag of heroin for $" .. paymento ,
-					type = "success",
-					progressBar = false,
-					queue = "lmao",
-					timeout = 2000,
-					layout = "CenterLeft"
-			})
-			TriggerClientEvent("animation", source)
-			xPlayer.removeInventoryItem('opium_pooch', 1)
-  			xPlayer.addAccountMoney('black_money', paymento)
-  			selling = false
+  				local removeAmount = math.random(5)
+				local payment = paymento * removeAmount
+  					TriggerClientEvent("pNotify:SetQueueMax", source, "lmao", 5)
+					TriggerClientEvent("pNotify:SendNotification", source, {
+						text = "You have sold a baggie of heroin for $" .. payment ,
+						type = "success",
+						progressBar = false,
+						queue = "lmao",
+						timeout = 2000,
+						layout = "CenterLeft"
+				})
+				TriggerClientEvent("animation", source)
+				xPlayer.removeInventoryItem('opium_pooch', removeAmount)
+  				xPlayer.addAccountMoney('black_money', payment)
+  				selling = false
 			elseif selling == true and success == false and notintrested == true then
 				TriggerClientEvent("pNotify:SetQueueMax", source, "lmao", 5)
 				TriggerClientEvent("pNotify:SendNotification", source, {
